@@ -1,0 +1,141 @@
+data/15_9-F-1A.LAS.txt
+Index(['ABDCQF01', 'ABDCQF02', 'ABDCQF03', 'ABDCQF04', 'BS', 'CALI', 'DRHO',
+       'DT', 'DTS', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP',
+       'RPCEHM', 'RPCELM', 'RT'],
+      dtype='object')
+10499
+ABDCQF01      0
+ABDCQF02      0
+ABDCQF03      0
+ABDCQF04      0
+BS            0
+CALI          1
+DRHO          0
+DT          275
+DTS         285
+GR            0
+NPHI         22
+PEF           0
+RACEHM        0
+RACELM        0
+RHOB          0
+ROP          78
+RPCEHM        0
+RPCELM        0
+RT            0
+dtype: int64
+
+data/15_9-F-1B.LAS.txt
+Index(['ABDCQF01', 'ABDCQF02', 'ABDCQF03', 'ABDCQF04', 'BS', 'CALI', 'DRHO',
+       'DT', 'DTS', 'GR', 'NBGRCFM', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RD',
+       'RHOB', 'RM', 'ROP', 'RPCEHM', 'RPCELM', 'RT'],
+      dtype='object')
+3223
+ABDCQF01       0
+ABDCQF02       0
+ABDCQF03       0
+ABDCQF04       0
+BS             0
+CALI           4
+DRHO           0
+DT           176
+DTS          624
+GR             0
+NBGRCFM     3223
+NPHI          25
+PEF            0
+RACEHM         0
+RACELM         0
+RD             0
+RHOB           0
+RM             0
+ROP            0
+RPCEHM         0
+RPCELM         0
+RT             0
+dtype: int64
+
+data/15_9-F-1C.LAS.txt
+Index(['ABDCQF01', 'ABDCQF02', 'ABDCQF03', 'ABDCQF04', 'BS', 'CALI', 'DRHO',
+       'GR', 'NBGRCFM', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RD', 'RHOB', 'RM',
+       'ROP', 'RPCEHM', 'RPCELM', 'RT'],
+      dtype='object')
+10197
+ABDCQF01     0
+ABDCQF02     0
+ABDCQF03     0
+ABDCQF04     0
+BS           0
+CALI         3
+DRHO         0
+GR           0
+NBGRCFM      0
+NPHI        94
+PEF         71
+RACEHM       0
+RACELM       0
+RD          24
+RHOB        71
+RM           0
+ROP         30
+RPCEHM       0
+RPCELM      24
+RT           0
+dtype: int64
+
+data/15_9-F-11A.LAS.txt
+Index(['ABDCQF01', 'ABDCQF02', 'ABDCQF03', 'ABDCQF04', 'BS', 'CALI', 'DRHO',
+       'DT', 'DTS', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RD', 'RHOB',
+       'RM', 'ROP', 'RPCEHM', 'RPCELM', 'RT'],
+      dtype='object')
+11679
+ABDCQF01      0
+ABDCQF02      0
+ABDCQF03      0
+ABDCQF04      0
+BS            0
+CALI          4
+DRHO          0
+DT          204
+DTS         595
+GR            0
+NPHI         82
+PEF          57
+RACEHM        0
+RACELM        0
+RD           44
+RHOB         57
+RM           44
+ROP          30
+RPCEHM        0
+RPCELM        0
+RT           44
+dtype: int64
+
+data/15_9-F-11B.LAS.txt
+Index(['ABDCQF01', 'ABDCQF02', 'ABDCQF03', 'ABDCQF04', 'BS', 'CALI', 'DRHO',
+       'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RD', 'RHOB', 'RM', 'ROP',
+       'RPCEHM', 'RPCELM', 'RT'],
+      dtype='object')
+15192
+ABDCQF01      0
+ABDCQF02      0
+ABDCQF03      0
+ABDCQF04      0
+BS            0
+CALI          3
+DRHO          0
+GR            0
+NPHI         23
+PEF           0
+RACEHM        0
+RACELM        0
+RD          217
+RHOB          0
+RM            0
+ROP          21
+RPCEHM        0
+RPCELM      217
+RT            0
+dtype: int64
+
