@@ -138,7 +138,7 @@ def try_alot():
                 for repeat_count in range(1, 5):
                     logger.remove()
                     args = {
-                        "batch_size": 16,
+                        "batch_size": 10,
                         "train_ratio": "9:1:2",
                         "window_size": window_size,
                         "desired_columns": columns,
