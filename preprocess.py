@@ -50,80 +50,78 @@ def read_filter_data(file_name=FILES[0], desired_columns=None):
             break
     
     full_df = df.loc[(df.index >= front_index) & (df.index <= butt_index)]
-    full_df = full_df[desired_columns]
+    
+    if desired_columns:
+        full_df = full_df[desired_columns]
+
     df_chunks = []
     starting_idx = 0
     for idx in range(len(full_df)):
         null_count = full_df.iloc[idx].isnull().sum().tolist()
         if null_count > 0:
             if starting_idx >= 0:
-                print("slice", starting_idx, idx)
-                this_slice = df.iloc[starting_idx:idx]
+                this_slice = full_df.iloc[starting_idx:idx]
                 df_chunks.append(this_slice)
                 starting_idx = -1
-            elif null_count == 1:
-                print(full_df.iloc[idx].isnull().sum())
-            print(null_count, starting_idx, idx)
-        if starting_idx == -1 and null_count == 0:
+        if null_count == 0 and starting_idx == -1:
             starting_idx = idx
 
     if starting_idx != -1:
-        this_slice = df.iloc[starting_idx:]
+        this_slice = full_df.iloc[starting_idx:]
         df_chunks.append(this_slice)
 
 
     return df_chunks
 
 
-
-
 def train_valid_test_split(ratio="9:1:2", chunk_size=10, desired_columns=None):
-    data = None
-    if not os.path.isfile("cache/data.pkl"):
+    df_list = None
+    desired_columns.append("DTS")
+    if not os.path.isfile("cache/dflist.pkl"): 
+        
         df_list = []
         for yes_file in YES_FILES:
-            print(desired_columns)
-            dfs = read_filter_data(yes_file, desired_columns)
+            dfs = read_filter_data(yes_file)
+            filt = []
             for df in dfs:
-                print(len(df))
-            df_list = df_list + dfs
-    
+                if len(df) > 6:
+                    print("APPEND!", len(df))
+                    filt.append(df)
+            df_list = df_list + filt
         
-        full_df = pd.concat(df_list)
-        df_min = full_df.min()
-        df_max = full_df.max()
-        
-        
-        # univ_columns = set(columns_list[0])
-        # for columns in columns_list[1:]:
-        #     univ_columns = univ_columns.intersection(set(columns))
-        # univ_columns = list(univ_columns)
-        univ_columns = desired_columns
-        
-        targets = []
-        chunks = []
-        for df in df_list:
-            df = (df-df_min)/(df_max-df_min) # normalize
-            for start_idx in range(len(df) - chunk_size - 1):
-                one_chunk = df.iloc[start_idx:start_idx + chunk_size]
-                if np.isnan(one_chunk.iloc[chunk_size//2 + 1]["DTS"]):
-                    continue
-                else:
-                    targets.append(one_chunk.iloc[chunk_size//2 + 1]["DTS"])
-                    del one_chunk["DTS"]
-                    chunks.append(one_chunk.to_numpy())
-
-        data = list(zip(chunks, targets))
-        random.shuffle(data)
-        pickle.dump(data, open("cache/data.pkl", "wb"))
+        pickle.dump(df_list, open("cache/dflist.pkl", "wb"))
     else:
-        data = pickle.load(open("cache/data.pkl", "rb"))
+        df_list = pickle.load(open("cache/dflist.pkl", "rb"))
     
+    full_df = pd.concat(df_list)
+    df_min = full_df.min()
+    df_max = full_df.max()
+    
+    # univ_columns = set(columns_list[0])
+    # for columns in columns_list[1:]:
+    #     univ_columns = univ_columns.intersection(set(columns))
+    # univ_columns = list(univ_columns)
+    
+    targets = []
+    chunks = []
+    for df in df_list:
+        df = (df-df_min)/(df_max-df_min) # normalize
+        df = df[desired_columns]
+        for start_idx in range(len(df) - chunk_size - 1):
+            one_chunk = df.iloc[start_idx:start_idx + chunk_size]
+            if np.isnan(one_chunk.iloc[chunk_size//2 + 1]["DTS"]):
+                continue
+            else:
+                targets.append(one_chunk.iloc[chunk_size//2 + 1]["DTS"])
+                del one_chunk["DTS"]
+                chunks.append(one_chunk.to_numpy())
+
+    data = list(zip(chunks, targets))
+    random.shuffle(data)
 
     ratios = [int(i) for i in ratio.split(":")]
     to_valid = (len(data) * ratios[0]) // sum(ratios)
     to_test = to_valid + (len(data) * ratios[1]) // sum(ratios)
-
 
     train = data[:to_valid]
     valid = data[to_valid:to_test]
@@ -139,7 +137,8 @@ def train_valid_test_split(ratio="9:1:2", chunk_size=10, desired_columns=None):
     #     f.write("\n".join(univ_columns))
     
     # univ_columns.remove("DTS")
-    return univ_columns, train, valid, test
+    desired_columns.remove("DTS")
+    return desired_columns, train, valid, test
 
 if __name__ == "__main__":
     c,a,b,c = train_valid_test_split(desired_columns=["BS", "CALI", "DRHO", "DT", "DTS", "GR", "NPHI", "PEF", "RACEHM", "RACELM", "RHOB", "ROP", "RPCEHM", "RPCELM", "RT"])
