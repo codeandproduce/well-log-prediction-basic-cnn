@@ -9,10 +9,10 @@ import itertools
 from easydict import EasyDict as edict
 
 from dataloader import get_dataloaders
-from model import BasicConvNet
+from model import MetaCNN
 
 def main(args):
-    log_path = f"logs/model_{args.model_id}.log"
+    log_path = f"meta_logs/model_{args.model_id}.log"
     logger.add(log_path)
     logger.info(args)
     train_loader, valid_loader, test_loader = get_dataloaders(
@@ -20,9 +20,10 @@ def main(args):
         train_ratio=args.train_ratio,
         window_size=args.window_size,
         batch_size=args.batch_size,
-        device=args.device
+        device=args.device,
+        full_seq=True
     )
-    model = BasicConvNet(
+    model = MetaCNN(
         input_shape=[args.window_size, len(args.desired_columns)],
         channels=args.channels,
         kernels=args.kernels,
@@ -47,12 +48,21 @@ def main(args):
         for _, batch in enumerate(train_loader):
             features = batch["features"].to(args.device)
             targets = batch["targets"].to(args.device)
+            pointwise_target = targets[:, targets.size(1) // 2]
+            print(targets)
+            print(pointwise_target)
+            
             # print(features)
             # print(targets)
 
-            out = model(features)   
-            out = out.squeeze()
-            loss = criterion(out, targets)
+            sequence_prediction, pointwise_prediction = model(features)   
+            sequence_prediction = sequence_prediction.squeeze()
+            pointwise_prediction = pointwise_prediction.squeeze()
+            
+            sequence_loss = criterion(sequence_prediction, targets)
+            pointwise_loss = criterion(pointwise_prediction, pointwise_target)
+            
+            loss = sequence_loss*args.alpha + (1-args.alpha)*pointwise_loss
             epoch_loss.append(loss.item())
             
             model.zero_grad()
@@ -60,6 +70,7 @@ def main(args):
 
             torch.nn.utils.clip_grad_value_(model.parameters(), 1.)
             optimizer.step()
+            return
          
         train_loss.append(np.mean(epoch_loss))
         epoch_loss = []
@@ -84,10 +95,10 @@ def main(args):
         
         if epoch % 50 == 0:
             if epoch > 0:
-                path = f"checkpoints/model_{args.model_id}/model_{args.model_id}_{epoch}.pt"
+                path = f"meta_checkpoints/model_{args.model_id}/model_{args.model_id}_{epoch}.pt"
                 
-                if not os.path.isdir(f"checkpoints/model_{args.model_id}"):
-                    os.mkdir(f"checkpoints/model_{args.model_id}")
+                if not os.path.isdir(f"meta_checkpoints/model_{args.model_id}"):
+                    os.mkdir(f"meta_checkpoints/model_{args.model_id}")
 
                 state = {
                     "args": args,
@@ -149,6 +160,7 @@ def try_alot():
                         "channels": [32, 64, 32],
                         "kernels": [(3,3), (3,3), (3,3)],
                         "dilations": [1, 1, 1],
+                        "alpha": 0.5,
                         "model_id": f"{count}_{repeat_count}",
                     }
                     args = edict(args)
@@ -161,7 +173,7 @@ def try_alot():
                         "test_loss": test_loss,
                         "args": args
                     }
-                    f = open(f"results/model_{args.model_id}.pkl", "wb")
+                    f = open(f"meta_results/model_{args.model_id}.pkl", "wb")
                     pickle.dump(train_dict, f)
                     f.close()
                 count += 1

@@ -1,0 +1,81 @@
+2021-05-30 10:52:20.215 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 10:53:58.208 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 10:54:14.259 | INFO     | __main__:main:33 - MetaCNN(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+  (fc1): Linear(in_features=1440, out_features=32, bias=True)
+  (fc2): Linear(in_features=32, out_features=7, bias=True)
+  (BiggerConvNet): BasicConvNet(
+    (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+    (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+    (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (fc1): Linear(in_features=1600, out_features=32, bias=True)
+    (fc2): Linear(in_features=32, out_features=1, bias=True)
+  )
+)
+2021-05-30 10:54:14.260 | INFO     | __main__:main:35 - pytorch_total_params
+2021-05-30 10:56:35.390 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 10:56:52.692 | INFO     | __main__:main:33 - MetaCNN(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+  (fc1): Linear(in_features=1440, out_features=32, bias=True)
+  (fc2): Linear(in_features=32, out_features=7, bias=True)
+  (BiggerConvNet): BasicConvNet(
+    (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+    (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+    (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (fc1): Linear(in_features=1600, out_features=32, bias=True)
+    (fc2): Linear(in_features=32, out_features=1, bias=True)
+  )
+)
+2021-05-30 10:56:52.692 | INFO     | __main__:main:35 - pytorch_total_params
+2021-05-30 11:00:06.986 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 11:00:23.680 | INFO     | __main__:main:33 - MetaCNN(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+  (fc1): Linear(in_features=1440, out_features=32, bias=True)
+  (fc2): Linear(in_features=32, out_features=7, bias=True)
+  (BiggerConvNet): BasicConvNet(
+    (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+    (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+    (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (fc1): Linear(in_features=1600, out_features=32, bias=True)
+    (fc2): Linear(in_features=32, out_features=1, bias=True)
+  )
+)
+2021-05-30 11:00:23.681 | INFO     | __main__:main:35 - pytorch_total_params
+2021-05-30 11:02:43.967 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 11:03:01.073 | INFO     | __main__:main:33 - MetaCNN(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+  (fc1): Linear(in_features=1440, out_features=32, bias=True)
+  (fc2): Linear(in_features=32, out_features=7, bias=True)
+  (BiggerConvNet): BasicConvNet(
+    (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+    (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+    (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (fc1): Linear(in_features=1600, out_features=32, bias=True)
+    (fc2): Linear(in_features=32, out_features=1, bias=True)
+  )
+)
+2021-05-30 11:03:01.073 | INFO     | __main__:main:35 - pytorch_total_params
+2021-05-30 11:03:41.035 | INFO     | __main__:main:17 - {'batch_size': 128, 'train_ratio': '9:1:2', 'window_size': 7, 'desired_columns': ['CALI', 'DRHO', 'DT', 'GR', 'NPHI', 'PEF', 'RACEHM', 'RACELM', 'RHOB', 'ROP', 'RPCEHM'], 'epochs': 201, 'lr': 5e-05, 'weight_decay': 1e-08, 'device': 'cuda:1', 'channels': [32, 64, 32], 'kernels': [(3, 3), (3, 3), (3, 3)], 'dilations': [1, 1, 1], 'alpha': 0.5, 'model_id': '1_1'}
+2021-05-30 11:03:57.693 | INFO     | __main__:main:33 - MetaCNN(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+  (fc1): Linear(in_features=1440, out_features=32, bias=True)
+  (fc2): Linear(in_features=32, out_features=7, bias=True)
+  (BiggerConvNet): BasicConvNet(
+    (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2))
+    (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+    (conv3): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (fc1): Linear(in_features=1600, out_features=32, bias=True)
+    (fc2): Linear(in_features=32, out_features=1, bias=True)
+  )
+)
+2021-05-30 11:03:57.694 | INFO     | __main__:main:35 - pytorch_total_params
